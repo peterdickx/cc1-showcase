@@ -1,5 +1,7 @@
+const BASE_WIDTH = 800;
+const BASE_HEIGHT = 600;
 let slideId = 0;
-let maxSlideId = 16;
+let maxSlideId = 14;
 let middleX, middleY;
 let thirdX, twoThirdsX;
 let thirdY, twoThirdsY;
@@ -14,18 +16,38 @@ let h = 0;
 let x = 0;
 let y = 0;
 let balls = [];
+let canvas;
 
 function output(...args) {
     console.log(...args);
 }
 
 function setup() {
-    createCanvas(800, 600);
+    canvas = createCanvas(BASE_WIDTH, BASE_HEIGHT);
+    const mainContainer = document.querySelector('main');
+    if (mainContainer) {
+        canvas.parent(mainContainer);
+    }
+    resizeSketch();
     noFill();
-    setPositions();
     colorMode(HSB);
     background(bg);
 
+}
+
+function resizeSketch() {
+    const header = document.querySelector('header');
+    const headerHeight = header ? header.getBoundingClientRect().height : 0;
+    const availableWidth = Math.max(windowWidth - 32, 320);
+    const availableHeight = Math.max(windowHeight - headerHeight - 32, 200);
+    const widthScale = availableWidth / BASE_WIDTH;
+    const heightScale = availableHeight / BASE_HEIGHT;
+    const scale = Math.min(widthScale, heightScale, 1);
+    const targetWidth = Math.round(BASE_WIDTH * scale);
+    const targetHeight = Math.round(BASE_HEIGHT * scale);
+    resizeCanvas(targetWidth, targetHeight);
+    setPositions();
+    background(bg);
 }
 
 function setPositions() {
@@ -45,6 +67,10 @@ function draw() {
 
     slideSelector(slideId);
 
+}
+
+function windowResized() {
+    resizeSketch();
 }
 
 function initSlide() {
