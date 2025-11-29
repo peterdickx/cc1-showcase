@@ -1,7 +1,7 @@
 const BASE_WIDTH = 800;
 const BASE_HEIGHT = 600;
-let slideId = 0;
-let maxSlideId = 14;
+let slideId = 14;
+let maxSlideId = 15;
 let middleX, middleY;
 let thirdX, twoThirdsX;
 let thirdY, twoThirdsY;
@@ -15,6 +15,8 @@ let gValue = 0;
 let h = 0;
 let x = 0;
 let y = 0;
+let r = 0;
+let counter = 0;
 let balls = [];
 let canvas;
 
@@ -89,10 +91,10 @@ function mousePressed() {
 
 function keyPressed() {
     if (keyCode == RIGHT_ARROW) {
-        //if (slideId < maxSlideId) {
-        slideId++;
-        startSlide = true;
-        //}
+        if (slideId < maxSlideId) {
+            slideId++;
+            startSlide = true;
+        }
     } else if (keyCode == LEFT_ARROW) {
         if (slideId > 0) {
             slideId--;
@@ -414,21 +416,44 @@ function slide13() {
 }
 
 function slide14() {
-    background(bg);
+
     if (startSlide) {
+        background(bg);
         noStroke();
         initSlide();
+        r = 0;
+        h = 0;
         h = 0;
     }
-    fill(0, 100, 100);
-    h += 1;
-    circle(middleX, middleY, 50);
+    fill(h % 360, 100, 100);
+    h += 0.9;
+    r += 2;
+    x = middleX + cos(radians(h * 3) * 5) * (r % (width / 5 * 3));
+    y = middleY + sin(radians(h * 3) * 5) * (r % (width / 5 * 3));
+    circle(x, y, 50);
+    output(r);
+
 }
 function slide15() {
-    background(bg);
+
     if (startSlide) {
+
         noStroke();
         initSlide();
+        x = -width / 20;
+        counter = 0;
     }
-    circle(middleX, middleY, 50);
+    if (counter < 40) {
+        background(bg, 0.05);
+        counter++;
+    } else if (counter == 40) {
+        background(bg);
+        counter++;
+    } else {
+
+        fill(h % 360, 100, 100);
+        circle(x % width, noise(frameCount / 100) * height, 50);
+        x += 10;
+        h++;
+    }
 }
