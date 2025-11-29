@@ -28,6 +28,8 @@ function setup() {
     if (mainContainer) {
         canvas.parent(mainContainer);
     }
+    textAlign(CENTER, CENTER);
+    textSize(24);
     resizeSketch();
     noFill();
     colorMode(HSB);
@@ -341,6 +343,8 @@ function slide11() {
             circle(balls[i * 15 + j].x, balls[i * 15 + j].y, balls[i * 15 + j].size);
         }
     }
+    fill(0, 0, 100);
+    text("Move the mouse around!", width / 2, height - 40);
 }
 
 function slide12() {
