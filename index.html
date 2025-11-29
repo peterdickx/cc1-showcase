@@ -22,6 +22,26 @@
   <script src="sketches/showcase.js"></script>
   <script>
     window.addEventListener("contextmenu", event => event.preventDefault());
+    // Device detection for tap/click text
+    function updateContinueText() {
+      var isTouch = false;
+      if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+        isTouch = true;
+      }
+      var tapText = document.querySelector('.continue-tap');
+      var clickText = document.querySelector('.continue-click');
+      if (tapText && clickText) {
+        if (isTouch) {
+          tapText.style.display = 'inline-block';
+          clickText.style.display = 'none';
+        } else {
+          tapText.style.display = 'none';
+          clickText.style.display = 'inline-block';
+        }
+      }
+    }
+    updateContinueText();
+    window.addEventListener('resize', updateContinueText);
   </script>
   <style>
   body {

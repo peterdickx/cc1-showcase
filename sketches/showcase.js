@@ -82,11 +82,38 @@ function initSlide() {
 }
 function mousePressed() {
     if (mouseButton === LEFT) {
-        if (slideId < maxSlideId) {
-            slideId++;
-            startSlide = true;
+        if (mouseX < width / 3) {
+            if (slideId > 0) {
+                slideId--;
+                startSlide = true;
+            }
+        } else {
+            if (slideId < maxSlideId) {
+                slideId++;
+                startSlide = true;
+            }
         }
     }
+}
+
+function touchStarted() {
+    // Touch navigation: left 1/3 = prev, right 2/3 = next
+    if (touches && touches.length > 0) {
+        const tx = touches[0].x;
+        if (tx < width / 3) {
+            if (slideId > 0) {
+                slideId--;
+                startSlide = true;
+            }
+        } else {
+            if (slideId < maxSlideId) {
+                slideId++;
+                startSlide = true;
+            }
+        }
+    }
+    // Prevent default to avoid double-triggering mousePressed
+    return false;
 }
 
 function keyPressed() {
