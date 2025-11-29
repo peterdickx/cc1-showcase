@@ -1,3 +1,4 @@
+
 const BASE_WIDTH = 800;
 const BASE_HEIGHT = 600;
 let slideId = 0;
@@ -88,6 +89,22 @@ function mousePressed() {
             slideId++;
             startSlide = true;
         }
+    }
+}
+function touchStarted() {
+    // Only handle single-finger taps
+    if (touches.length === 1) {
+        let x = touches[0].x;
+        if (x < width / 3) {
+            if (slideId > 0) {
+                slideId--;
+                startSlide = true;
+            }
+        } else if (x > width / 3) {
+            slideId++;
+            startSlide = true;
+        }
+        return false; // Prevent default
     }
 }
 
