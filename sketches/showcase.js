@@ -1,4 +1,3 @@
-
 const BASE_WIDTH = 800;
 const BASE_HEIGHT = 600;
 let slideId = 0;
@@ -40,13 +39,9 @@ function setup() {
 
 function resizeSketch() {
     const header = document.querySelector('header');
-    const footer = document.querySelector('footer');
     const headerHeight = header ? header.getBoundingClientRect().height : 0;
-    const footerHeight = footer ? footer.getBoundingClientRect().height : 0;
-    // Use smaller margins for more usable space on mobile
-    const margin = window.innerWidth < 600 ? 8 : 32;
-    const availableWidth = Math.max(windowWidth - margin, 320);
-    const availableHeight = Math.max(windowHeight - headerHeight - footerHeight - margin, 200);
+    const availableWidth = Math.max(windowWidth - 32, 320);
+    const availableHeight = Math.max(windowHeight - headerHeight - 32, 200);
     const widthScale = availableWidth / BASE_WIDTH;
     const heightScale = availableHeight / BASE_HEIGHT;
     const scale = Math.min(widthScale, heightScale, 1);
@@ -89,22 +84,6 @@ function mousePressed() {
             slideId++;
             startSlide = true;
         }
-    }
-}
-function touchStarted() {
-    // Only handle single-finger taps
-    if (touches.length === 1) {
-        let x = touches[0].x;
-        if (x < width / 3) {
-            if (slideId > 0) {
-                slideId--;
-                startSlide = true;
-            }
-        } else if (x > width / 3) {
-            slideId++;
-            startSlide = true;
-        }
-        return false; // Prevent default
     }
 }
 
