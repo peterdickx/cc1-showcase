@@ -1,6 +1,6 @@
 const BASE_WIDTH = 800;
 const BASE_HEIGHT = 600;
-let slideId = 14;
+let slideId = 0;
 let maxSlideId = 15;
 let middleX, middleY;
 let thirdX, twoThirdsX;
