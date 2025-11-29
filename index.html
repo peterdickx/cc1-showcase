@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>CC1 Showcase</title>
+	<link rel="preload" href="p5/p5.min.js" as="script">
+</head>
+<body>
+  <header>
+    <span class="tag"><a href="https://www.erasmushogeschool.be/nl/opleidingen/multimedia-en-creatieve-technologie" target="_blank">MCT</a></span>
+    <h1>Creative Coding I</h1>
+    <a href="https://www.erasmushogeschool.be/nl" target="_blank"><img class="logo" src="media/ehb.png" alt="EHB logo"></a>
+  </header>
+  <main>
+    <script src="p5/p5.min.js"></script>
+    <script src="import/p5.tween.min.js"></script>
+    <script src="sketches/showcase.js"></script>
+    <script>
+  window.addEventListener("contextmenu", event => event.preventDefault());
+</script>
+  </main>
+  <style>
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: #1a1a1a;
+    color: #fff;
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  }
+  header {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    padding: 1.25rem 0;
+  }
+  .tag {
+    position: absolute;
+    top: 40%;
+    left: 1.5rem;
+    transform: translateY(-50%);
+    font-weight: 600;
+    font-size: xx-large;
+    letter-spacing: 0.1em;
+    color: #e30613;
+  }
+  .logo {
+    position: absolute;
+    top: 50%;
+    right: 1.5rem;
+    width: 80px;
+    height: auto;
+    transform: translateY(-50%);
+  }
+  main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  a,
+  a:visited,
+  a:hover,
+  a:active {
+    color: inherit;
+    text-decoration: none;
+  }
+  canvas {
+    display: block;
+  }
+  </style>
+</body>
+</html>
