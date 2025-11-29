@@ -42,7 +42,7 @@
   }
   .tag {
     position: absolute;
-    top: 40%;
+    top: 50%;
     left: 1.5rem;
     transform: translateY(-50%);
     font-weight: 600;
@@ -92,7 +92,7 @@
   .responsive-title {
     order: 2;
     margin: 0 auto;
-    font-size: clamp(1.2rem, 5vw, 2.5rem);
+    font-size: clamp(0.8rem, 4vw, 2rem);
     font-weight: 700;
     flex-basis: 100%;
     z-index: 1;
@@ -134,7 +134,7 @@
     height: 0;
     background: transparent;
   }
-  @media (max-width: 400px) {
+  @media (max-width: 350px) {
       canvas {
       max-width: 98vw;
       max-height: 60vh;
@@ -156,14 +156,14 @@
     .responsive-title {
       order: 2;
       margin: 0.6rem 0;
-      font-size: clamp(1.1rem, 6vw, 1.7rem);
+      font-size: clamp(1rem, 6vw, 1.2rem);
       flex-basis: auto;
       width: 100%;
     }
     .logo {
       order: 3;
       margin: 1.5rem auto;
-      width: clamp(40px, 18vw, 60px);
+      width: clamp(30px, 18vw, 50px);
       text-align: left;
     }
   }
