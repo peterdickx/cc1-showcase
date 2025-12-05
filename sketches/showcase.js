@@ -26,7 +26,7 @@ let logos = [];
 
 function preload() {
     output(MEDIA_FOLDER);
-    logoImg = loadImage("/media/ehblogo.png");
+    logoImg = loadImage("/media" + "/ehblogo.png");
 }
 
 function output(...args) {
@@ -191,9 +191,11 @@ function slideStart() {
         logos.push({
             x: mouseX,
             y: mouseY,
-            xSpeed: random(-1, 1),
-            ySpeed: random(-1, 1),
-            alpha: 1   // start fully opaque
+            xSpeed: (round(random(0, 1)) * 2 - 1) * random(0.1, 2),
+            ySpeed: (round(random(0, 1)) * 2 - 1) * random(0.1, 2),
+            alpha: 1,  // start fully opaque
+            ox: mouseX,
+            oy: mouseY
         });
     }
 
@@ -202,7 +204,7 @@ function slideStart() {
         let L = logos[i];
 
         // Distance from mouse
-        let d = dist(mouseX, mouseY, L.x, L.y);
+        let d = dist(L.ox, L.oy, L.x, L.y);
 
         // Fade based on distance
         L.alpha = 1 - d / 125;
