@@ -1,7 +1,9 @@
+
 const BASE_WIDTH = 800;
 const BASE_HEIGHT = 600;
-let slideId = 0;
-let maxSlideId = 15;
+let trails = [];
+let slideId = -1;
+let maxSlideId = 16;
 let middleX, middleY;
 let thirdX, twoThirdsX;
 let thirdY, twoThirdsY;
@@ -19,6 +21,12 @@ let r = 0;
 let counter = 0;
 let balls = [];
 let canvas;
+let logoImg;
+let logos = [];
+
+function preload() {
+    logoImg = loadImage(MEDIA_FOLDER + "/ehblogo.png");
+}
 
 function output(...args) {
     console.log(...args);
@@ -132,11 +140,95 @@ function keyPressed() {
 }
 
 function slideSelector(id) {
-    window["slide" + id]();
+    if (id == -1) {
+        slideStart();
+    } else {
+        window["slide" + id]();
+    }
 
 }
 
+function slideStart() {
+    if (startSlide) {
+        noStroke();
+        noCursor();
+        initSlide();
+        imageMode(CENTER);
+    }
+    background(bg); // full clean each frame
+
+    // Add a new trail element at the mouse
+    trails.push({
+        x: mouseX,
+        y: mouseY,
+        alpha: 1.0      // start fully visible
+    });
+
+    // Draw and update all trails
+    for (let i = trails.length - 1; i >= 0; i--) {
+        let t = trails[i];
+
+        push();
+        translate(t.x, t.y);
+        scale(0.1);
+        tint(255, t.alpha);  // fade using alpha 0–1 under HSB mode
+        image(logoImg, 0, 0);
+        pop();
+
+        // Fade it
+        t.alpha -= 0.2;  // adjust for slower or faster fading
+
+        // Remove faded trails
+        if (t.alpha <= 0) {
+            trails.splice(i, 1);
+        }
+    }
+
+
+    // Every 20 frames, add a drifting logo
+    if (frameCount % 5 === 0) {
+        logos.push({
+            x: mouseX,
+            y: mouseY,
+            xSpeed: random(-1, 1),
+            ySpeed: random(-1, 1),
+            alpha: 1   // start fully opaque
+        });
+    }
+
+    // Loop BACKWARD so removal is safe
+    for (let i = logos.length - 1; i >= 0; i--) {
+        let L = logos[i];
+
+        // Distance from mouse
+        let d = dist(mouseX, mouseY, L.x, L.y);
+
+        // Fade based on distance
+        L.alpha = 1 - d / 125;
+        L.alpha = constrain(L.alpha, 0, 1);
+
+        // Remove logos too far away OR fully faded
+        if (d > 100 || L.alpha <= 0) {
+            logos.splice(i, 1);
+            continue;
+        }
+
+        // Draw the logo
+        push();
+        tint(255, L.alpha);  // fade with alpha
+        image(logoImg, L.x, L.y, logoImg.width / 40, logoImg.height / 40);
+        pop();
+
+        // Movement
+        L.x += L.xSpeed;
+        L.y += L.ySpeed;
+    }
+    tint(255, 255);
+    fill("#ed1c24");
+    text("Welcome", width / 2, height - 40);
+}
 function slide0() {
+    cursor();
     background(bg);
     strokeWeight(5);
     stroke("red");
@@ -483,4 +575,14 @@ function slide15() {
         x += 10;
         h++;
     }
+}
+
+function slide16() {
+
+
+
+
+
+
+
 }

@@ -1,5 +1,5 @@
 {
-  "createdAt": "2025-11-29T18:49:28.065",
+  "createdAt": "2025-12-05T09:43:34.273",
   "projectType": "p5js",
   "include": [
     "*.js",
@@ -11,7 +11,7 @@
     "common/*.js",
     "import/*.js",
     "import/*.d.ts",
-    "c:\\Users\\Peter\\.vscode\\extensions\\peterdickx.p5-studio-1.0.15\\assets\\1.11\\p5types\\global.d.ts",
-    "c:\\Users\\Peter\\.vscode\\extensions\\peterdickx.p5-studio-1.0.15\\assets\\1.11\\p5types\\p5helper.d.ts"
+    "d:\\OneDrive - Erasmushogeschool Brussel\\Multec\\2025-2026\\CC1\\p5-studio\\assets\\1.11\\p5types\\global.d.ts",
+    "d:\\OneDrive - Erasmushogeschool Brussel\\Multec\\2025-2026\\CC1\\p5-studio\\assets\\1.11\\p5types\\p5helper.d.ts"
   ]
 }
