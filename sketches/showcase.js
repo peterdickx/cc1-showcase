@@ -25,7 +25,8 @@ let logoImg;
 let logos = [];
 
 function preload() {
-    logoImg = loadImage(MEDIA_FOLDER + "/ehblogo.png");
+    output(MEDIA_FOLDER);
+    logoImg = loadImage("/media/ehblogo.png");
 }
 
 function output(...args) {
